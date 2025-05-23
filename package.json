@@ -1,15 +1,18 @@
 {
   "name": "nse-stock-scraper",
   "version": "1.0.0",
-  "description": "NSE Stock Data Scraper",
-  "main": "src/fetch-once.js",
+  "description": "NSE Stock Data Scraper with MongoDB Integration",
+  "main": "src/fetch-nse-api.js",
   "scripts": {
-    "fetch": "node src/fetch-once.js"
+    "start": "node src/fetch-nse-api.js",
+    "dev": "nodemon src/fetch-nse-api.js"
   },
   "dependencies": {
     "axios": "^1.6.2",
     "dotenv": "^16.5.0",
+    "moment": "^2.30.1",
     "mongoose": "^6.3.0",
+    "stock-nse-india": "^1.2.1",
     "tough-cookie": "^4.1.3"
   },
   "engines": {

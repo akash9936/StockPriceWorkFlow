@@ -62,13 +62,15 @@ const MarketOverviewSchema = new mongoose.Schema({
         unchanged: { type: String }
     },
     timestamp: { type: Date, default: Date.now, index: true },
+    stockPriceTime: { type: String, index: true },
     data: [StockDataSchema]
 }, {
     timestamps: true,
     collection: 'market_overview'
 });
 
-// Create compound index on name and timestamp for efficient querying
+// Create compound indexes for efficient querying
 MarketOverviewSchema.index({ name: 1, timestamp: -1 });
+MarketOverviewSchema.index({ name: 1, stockPriceTime: -1 });
 
 module.exports = mongoose.model('MarketOverview', MarketOverviewSchema); 
