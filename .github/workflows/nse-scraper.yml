@@ -1,0 +1,43 @@
+name: NSE Stock Scraper
+
+on:
+  schedule:
+    # Run every 15 minutes during market hours (9:15 AM to 3:30 PM IST, Monday to Friday)
+    - cron: '*/15 3-9 * * 1-5'  # UTC time (3:00-9:00 UTC = 8:30-14:30 IST)
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Create .env file
+      run: |
+        echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" >> .env
+        echo "NODE_ENV=production" >> .env
+      
+    - name: Run scraper
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        NODE_ENV: production
+      run: node src/fetch-once.js
+      
+    - name: Check run status
+      if: always()
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "Scraper completed successfully"
+        else
+          echo "Scraper failed"
+          exit 1 
