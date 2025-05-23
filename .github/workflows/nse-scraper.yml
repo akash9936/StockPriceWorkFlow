@@ -40,4 +40,4 @@ jobs:
           echo "Scraper completed successfully"
         else
           echo "Scraper failed"
-          exit 1 
+          exit 1
