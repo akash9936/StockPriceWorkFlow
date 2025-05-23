@@ -2,8 +2,8 @@ name: NSE Stock Scraper
 
 on:
   schedule:
-    # Run every 15 minutes during market hours (9:15 AM to 3:30 PM IST, Monday to Friday)
-    - cron: '*/15 3-9 * * 1-5'  # UTC time (3:00-9:00 UTC = 8:30-14:30 IST)
+    # Run every 10 minutes during market hours (9:15 AM to 3:30 PM IST, Monday to Friday)
+    - cron: '*/10 * * * *'  # UTC time (3:00-9:00 UTC = 8:30-14:30 IST)
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
