@@ -7,7 +7,7 @@ const cookieJar = new tough.CookieJar();
 let count = 1;
 let lastCookieRefresh = null;
 const COOKIE_REFRESH_INTERVAL = 1 * 60 * 1000; // 1 minute
-const MAX_RETRIES = 5;
+const MAX_RETRIES = 30;
 let retryCount = 0;
 
 // Random user agents to rotate
